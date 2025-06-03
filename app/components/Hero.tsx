@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { SignupFormDemo } from "./Signup";
 import { ContainerTextFlipDemo } from "./TextFlip";
+import { HoverBorderGradientDemo } from "./ButtonHero";
 
 export function HeroSectionOne() {
   return (
@@ -18,7 +19,7 @@ export function HeroSectionOne() {
       </div> */}
 
       <div className="px-4 py-4 md:py-8">
-        <h1 className="relative z-10 mx-0 max-w-2xl text-left text-xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-slate-300">
+        <h1 className="relative z-10 mx-0 max-w-2xl text-left text-4xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-slate-300">
           {"Make your Test Case Generation 10x"
             .split(" ")
             .map((word, index) => (
@@ -68,9 +69,10 @@ export function HeroSectionOne() {
           }}
           className="relative z-10 mt-8 flex flex-wrap items-start justify-start gap-4"
         >
-          <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+          {/* <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
             Book a meet
-          </button>
+          </button> */}
+          <HoverBorderGradientDemo />
         </motion.div>
       </div>
     </div>

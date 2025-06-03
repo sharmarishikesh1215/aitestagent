@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import { HeroSectionOne } from "../components/Hero";
 import { SignupFormDemo } from "../components/Signup";
 

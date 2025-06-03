@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,7 @@ export function SignupFormDemo() {
   });
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,11 +39,24 @@ export function SignupFormDemo() {
       );
       const data = await res.json();
       setResponse(JSON.stringify(data));
+      setShowAlert(true);
     } catch (err) {
       setResponse("Error submitting form.");
+      setShowAlert(true);
     }
     setLoading(false);
   };
+
+  // Hide alert after 3 seconds
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => setShowAlert(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
+
+  // Add this style to all Input and textarea fields for consistent, smaller placeholder size
+  const inputClassName = "text-sm placeholder:text-sm";
 
   return (
     <div className="shadow-input mx-auto w-full max-w-2xl rounded-none bg-white p-8 md:rounded-2xl md:p-12 dark:bg-black">
@@ -54,7 +68,7 @@ export function SignupFormDemo() {
           {/* Left column */}
           <div className="flex-1 flex flex-col gap-4">
             <LabelInputContainer>
-              <Label htmlFor="os">Google Sheet Link*</Label>
+              <CustomLabel htmlFor="os">Google Sheet Link*</CustomLabel>
               <Input
                 id="os"
                 name="os"
@@ -63,10 +77,11 @@ export function SignupFormDemo() {
                 value={form.os}
                 onChange={handleChange}
                 required
+                className={inputClassName}
               />
             </LabelInputContainer>
             <LabelInputContainer>
-              <Label htmlFor="sheet">Sheet*</Label>
+              <CustomLabel htmlFor="sheet">Sheet*</CustomLabel>
               <Input
                 id="sheet"
                 name="sheet"
@@ -75,10 +90,11 @@ export function SignupFormDemo() {
                 value={form.sheet}
                 onChange={handleChange}
                 required
+                className={inputClassName}
               />
             </LabelInputContainer>
             <LabelInputContainer>
-              <Label htmlFor="ticketId">Ticket ID*</Label>
+              <CustomLabel htmlFor="ticketId">Ticket ID*</CustomLabel>
               <Input
                 id="ticketId"
                 name="ticketId"
@@ -87,10 +103,11 @@ export function SignupFormDemo() {
                 value={form.ticketId}
                 onChange={handleChange}
                 required
+                className={inputClassName}
               />
             </LabelInputContainer>
             <LabelInputContainer>
-              <Label htmlFor="module">Module*</Label>
+              <CustomLabel htmlFor="module">Module*</CustomLabel>
               <Input
                 id="module"
                 name="module"
@@ -99,13 +116,14 @@ export function SignupFormDemo() {
                 value={form.module}
                 onChange={handleChange}
                 required
+                className={inputClassName}
               />
             </LabelInputContainer>
           </div>
           {/* Right column */}
           <div className="flex-1 flex flex-col gap-4">
             <LabelInputContainer>
-              <Label htmlFor="summary">Summary*</Label>
+              <CustomLabel htmlFor="summary">Summary*</CustomLabel>
               <Input
                 id="summary"
                 name="summary"
@@ -114,28 +132,33 @@ export function SignupFormDemo() {
                 value={form.summary}
                 onChange={handleChange}
                 required
+                className={inputClassName}
               />
             </LabelInputContainer>
             <LabelInputContainer>
-              <Label htmlFor="ac">Acceptance Criteria*</Label>
-              <textarea
+              <CustomLabel htmlFor="ac">Acceptance Criteria*</CustomLabel>
+              <Input
                 id="ac"
                 name="ac"
                 placeholder="Acceptance Criteria"
-                className="w-full rounded-md border border-gray-300 p-2 dark:bg-zinc-900 dark:text-white resize-none"
-                rows={3}
+                className={cn(
+                  "w-full rounded-md border border-gray-300 focus:border-black focus:ring-2 focus:ring-black dark:bg-zinc-900 dark:text-white resize-none transition-colors",
+                  inputClassName
+                )}
+                // rows={3}
                 value={form.ac}
                 onChange={handleChange}
                 required
               />
             </LabelInputContainer>
             <LabelInputContainer>
-              <Label htmlFor="desc">Description*</Label>
-              <textarea
+              <CustomLabel htmlFor="desc">Description*</CustomLabel>
+              <Input
+                // as="textarea"
                 id="desc"
                 name="desc"
                 placeholder="Description"
-                className="w-full rounded-md border border-gray-300 p-2 dark:bg-zinc-900 dark:text-white resize-none"
+                className={cn("w-full resize-none", inputClassName)}
                 rows={4}
                 value={form.desc}
                 onChange={handleChange}
@@ -152,11 +175,33 @@ export function SignupFormDemo() {
           {loading ? "Submitting..." : "Submit"}
           <BottomGradient />
         </button>
-        {response && (
-          <div className="mt-4 text-sm text-center text-green-600 dark:text-green-400">
-            {response}
-          </div>
-        )}
+        {response && showAlert && (() => {
+          let message = "";
+          try {
+            const parsed = JSON.parse(response);
+            message = parsed.message || response;
+          } catch {
+            message = response;
+          }
+          return (
+            <div role="alert" className="alert alert-success mt-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>{message}</span>
+            </div>
+          );
+        })()}
       </form>
     </div>
   );
@@ -184,3 +229,15 @@ const LabelInputContainer = ({
     </div>
   );
 };
+
+// If you control the Label component, you can add these styles there.
+// Otherwise, override the Label style here:
+const CustomLabel = (props: React.ComponentProps<typeof Label>) => (
+  <Label
+    {...props}
+    className={cn(
+      "text-[#5b666d] text-xs font-medium", // custom color and smaller size
+      props.className
+    )}
+  />
+);
