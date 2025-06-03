@@ -159,7 +159,6 @@ export function SignupFormDemo() {
                 name="desc"
                 placeholder="Description"
                 className={cn("w-full resize-none", inputClassName)}
-                rows={4}
                 value={form.desc}
                 onChange={handleChange}
                 required
