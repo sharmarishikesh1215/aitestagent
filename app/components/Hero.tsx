@@ -6,7 +6,7 @@ import { HoverBorderGradientDemo } from "./ButtonHero";
 
 export function HeroSectionOne() {
   return (
-    <div className="relative mx-auto my-2 flex max-w-xl flex-col items-start justify-center">
+    <div className="relative mx-auto my-2 flex flex-col items-center justify-center">
       {/* <div className="absolute inset-y-0 left-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
         <div className="absolute top-0 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
       </div> */}
@@ -17,8 +17,8 @@ export function HeroSectionOne() {
         <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
       </div> */}
 
-      <div className="px-4 py-4 md:py-8">
-        <h1 className="relative z-10 mx-0 max-w-2xl text-left text-4xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-slate-300">
+      <div className="px-4 py-4 md:py-8 flex flex-col items-center">
+        <h1 className="relative z-10 mx-0 max-w-4xl text-center text-4xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-slate-300">
           {"Make your Test Case Generation 10x"
             .split(" ")
             .map((word, index) => (
@@ -49,7 +49,7 @@ export function HeroSectionOne() {
             duration: 0.3,
             delay: 0.8,
           }}
-          className="relative z-10 mx-0 max-w-xl py-4 text-left text-lg font-normal text-neutral-600 dark:text-neutral-400"
+          className="relative z-10 mx-0 max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
         >
           With AI, you can generate test cases in seconds, not days. Try our
           best in class, state of the art, cutting edge AI tool for writing
@@ -66,11 +66,8 @@ export function HeroSectionOne() {
             duration: 0.3,
             delay: 1,
           }}
-          className="relative z-10 mt-8 flex flex-wrap items-start justify-start gap-4"
+          className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          {/* <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-            Book a meet
-          </button> */}
           <HoverBorderGradientDemo />
         </motion.div>
       </div>

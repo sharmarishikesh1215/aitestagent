@@ -15,16 +15,16 @@ import { useState } from "react";
 export function NavbarDemo() {
   const navItems = [
     {
-      name: "Features",
-      link: "#features",
+      name: "About Us",
+      link: "https://www.frugaltesting.com/about-us",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: "Services",
+      link: "https://www.frugaltesting.com/",
     },
     {
-      name: "Contact",
-      link: "#contact",
+      name: "Case Studies",
+      link: "https://www.frugaltesting.com/case-studiesntact",
     },
   ];
 

@@ -59,16 +59,23 @@ export function SignupFormDemo() {
   const inputClassName = "text-sm placeholder:text-sm";
 
   return (
-    <div className="shadow-input mx-auto w-full max-w-2xl rounded-none bg-white p-8 md:rounded-2xl md:p-12 dark:bg-black">
+    <div className="shadow-input mx-auto w-full max-w-4xl rounded-none bg-white p-8 md:rounded-2xl md:p-12 dark:bg-black">
+      {/* ↑ changed max-w-2xl to max-w-4xl for a wider form */}
       <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
-        User Story
+        Feature Info
       </h2>
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row gap-4">
           {/* Left column */}
           <div className="flex-1 flex flex-col gap-4">
             <LabelInputContainer>
-              <CustomLabel htmlFor="os">Google Sheet Link*</CustomLabel>
+              <CustomLabel htmlFor="os">
+                Google Sheet Link*
+                <br />
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  (Output Sheet Should have Edit* Access for All)
+                </span>
+              </CustomLabel>
               <Input
                 id="os"
                 name="os"
@@ -80,19 +87,7 @@ export function SignupFormDemo() {
                 className={inputClassName}
               />
             </LabelInputContainer>
-            <LabelInputContainer>
-              <CustomLabel htmlFor="sheet">Sheet*</CustomLabel>
-              <Input
-                id="sheet"
-                name="sheet"
-                placeholder="Sheet1"
-                type="text"
-                value={form.sheet}
-                onChange={handleChange}
-                required
-                className={inputClassName}
-              />
-            </LabelInputContainer>
+
             <LabelInputContainer>
               <CustomLabel htmlFor="ticketId">Ticket ID*</CustomLabel>
               <Input
@@ -101,6 +96,22 @@ export function SignupFormDemo() {
                 placeholder="PC01"
                 type="text"
                 value={form.ticketId}
+                onChange={handleChange}
+                required
+                className={inputClassName}
+              />
+            </LabelInputContainer>
+          </div>
+          {/* Right column */}
+          <div className="flex-1 flex flex-col gap-4 mt-4">
+            <LabelInputContainer>
+              <CustomLabel htmlFor="sheet">Sheet Tab Link*</CustomLabel>
+              <Input
+                id="sheet"
+                name="sheet"
+                placeholder="Sheet1"
+                type="text"
+                value={form.sheet}
                 onChange={handleChange}
                 required
                 className={inputClassName}
@@ -120,51 +131,50 @@ export function SignupFormDemo() {
               />
             </LabelInputContainer>
           </div>
-          {/* Right column */}
-          <div className="flex-1 flex flex-col gap-4">
-            <LabelInputContainer>
-              <CustomLabel htmlFor="summary">Summary*</CustomLabel>
-              <Input
-                id="summary"
-                name="summary"
-                placeholder="Summary"
-                type="text"
-                value={form.summary}
-                onChange={handleChange}
-                required
-                className={inputClassName}
-              />
-            </LabelInputContainer>
-            <LabelInputContainer>
-              <CustomLabel htmlFor="ac">Acceptance Criteria*</CustomLabel>
-              <Input
-                id="ac"
-                name="ac"
-                placeholder="Acceptance Criteria"
-                className={cn(
-                  "w-full rounded-md border border-gray-300 focus:border-black focus:ring-2 focus:ring-black dark:bg-zinc-900 dark:text-white resize-none transition-colors",
-                  inputClassName
-                )}
-                // rows={3}
-                value={form.ac}
-                onChange={handleChange}
-                required
-              />
-            </LabelInputContainer>
-            <LabelInputContainer>
-              <CustomLabel htmlFor="desc">Description*</CustomLabel>
-              <Input
-                // as="textarea"
-                id="desc"
-                name="desc"
-                placeholder="Description"
-                className={cn("w-full resize-none", inputClassName)}
-                value={form.desc}
-                onChange={handleChange}
-                required
-              />
-            </LabelInputContainer>
-          </div>
+        </div>
+        <div className="mt-6 flex flex-col space-y-3">
+          <LabelInputContainer>
+            <CustomLabel htmlFor="summary">Summary*</CustomLabel>
+            <Input
+              id="summary"
+              name="summary"
+              placeholder="Summary"
+              type="text"
+              value={form.summary}
+              onChange={handleChange}
+              required
+              className={inputClassName}
+            />
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <CustomLabel htmlFor="ac">Acceptance Criteria*</CustomLabel>
+            <Input
+              id="ac"
+              name="ac"
+              placeholder="Acceptance Criteria"
+              className={cn(
+                "h-[130px] w-full rounded-md border border-gray-300 focus:border-black focus:ring-2 focus:ring-black dark:bg-zinc-900 dark:text-white resize-none transition-colors",
+                inputClassName
+              )}
+              // rows={3}
+              value={form.ac}
+              onChange={handleChange}
+              required
+            />
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <CustomLabel htmlFor="desc">Description*</CustomLabel>
+            <Input
+              // as="textarea"
+              id="desc"
+              name="desc"
+              placeholder="Description"
+              className={cn("h-[130px] w-full resize-none", inputClassName)}
+              value={form.desc}
+              onChange={handleChange}
+              required
+            />
+          </LabelInputContainer>
         </div>
         <button
           className="group/btn relative mt-8 block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
@@ -242,4 +252,3 @@ const CustomLabel = (props: React.ComponentProps<typeof Label>) => (
     )}
   />
 );
-
