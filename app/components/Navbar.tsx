@@ -24,7 +24,7 @@ export function NavbarDemo() {
     },
     {
       name: "Case Studies",
-      link: "https://www.frugaltesting.com/case-studiesntact",
+      link: "https://www.frugaltesting.com/case-studies",
     },
   ];
 
