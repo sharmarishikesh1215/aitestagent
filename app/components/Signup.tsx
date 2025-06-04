@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea"; // <-- Add this import
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
@@ -109,7 +110,7 @@ export function SignupFormDemo() {
               <Input
                 id="sheet"
                 name="sheet"
-                placeholder="Sheet1"
+                placeholder="Link to Sheet Tab"
                 type="text"
                 value={form.sheet}
                 onChange={handleChange}
@@ -148,7 +149,7 @@ export function SignupFormDemo() {
           </LabelInputContainer>
           <LabelInputContainer>
             <CustomLabel htmlFor="ac">Acceptance Criteria*</CustomLabel>
-            <Input
+            <Textarea
               id="ac"
               name="ac"
               placeholder="Acceptance Criteria"
@@ -156,23 +157,20 @@ export function SignupFormDemo() {
                 "h-[130px] w-full rounded-md border border-gray-300 focus:border-black focus:ring-2 focus:ring-black dark:bg-zinc-900 dark:text-white resize-none transition-colors",
                 inputClassName
               )}
-              // rows={3}
               value={form.ac}
               onChange={handleChange}
               required
             />
           </LabelInputContainer>
           <LabelInputContainer>
-            <CustomLabel htmlFor="desc">Description*</CustomLabel>
-            <Input
-              // as="textarea"
+            <CustomLabel htmlFor="desc">Description</CustomLabel>
+            <Textarea
               id="desc"
               name="desc"
               placeholder="Description"
               className={cn("h-[130px] w-full resize-none", inputClassName)}
               value={form.desc}
               onChange={handleChange}
-              required
             />
           </LabelInputContainer>
         </div>
@@ -188,14 +186,52 @@ export function SignupFormDemo() {
           showAlert &&
           (() => {
             let message = "";
+            let isError = false;
+
             try {
               const parsed = JSON.parse(response);
-              message = parsed.message || response;
+              // If response is {"message":"Error in workflow"}
+              if (
+                typeof parsed === "object" &&
+                parsed !== null &&
+                parsed.message === "Error in workflow"
+              ) {
+                message = "Please check all of the fields";
+                isError = true;
+              } else if (
+                response &&
+                response !== "null" &&
+                response.trim() !== ""
+              ) {
+                message = "Sheet is Updated!";
+              } else {
+                message = "No response received.";
+                isError = true;
+              }
             } catch {
-              message = response;
+              // If response is not JSON, fallback
+              if (response && response !== "null" && response.trim() !== "") {
+                message = "Sheet is Updated!";
+              } else {
+                message = "No response received.";
+                isError = true;
+              }
             }
+
             return (
-              <div role="alert" className="alert alert-success mt-4">
+              <div
+                role="alert"
+                className={`alert mt-4 ${
+                  isError
+                    ? "bg-red-100 text-red-700 border border-red-200"
+                    : "alert-success"
+                }`}
+                style={
+                  isError
+                    ? { backgroundColor: "#ffe5e5", color: "#b91c1c" }
+                    : {}
+                }
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 shrink-0 stroke-current"
@@ -206,7 +242,11 @@ export function SignupFormDemo() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d={
+                      isError
+                        ? "M6 18L18 6M6 6l12 12"
+                        : "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    }
                   />
                 </svg>
                 <span>{message}</span>
