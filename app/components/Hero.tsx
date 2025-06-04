@@ -51,7 +51,7 @@ export function HeroSectionOne() {
           }}
           className="relative z-10 mx-0 max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
         >
-          With AI, you can generate test cases in seconds, not days. Try our
+          With AI, you can generate test cases in seconds, not minutes. Try our
           best in class, state of the art, cutting edge AI tool for writing
           functional test cases.
         </motion.p>
