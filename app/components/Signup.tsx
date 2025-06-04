@@ -196,7 +196,7 @@ export function SignupFormDemo() {
                 parsed !== null &&
                 parsed.message === "Error in workflow"
               ) {
-                message = "Please check all of the fields";
+                message = "Please check google sheet and tab link";
                 isError = true;
               } else if (
                 response &&
