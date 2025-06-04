@@ -30,7 +30,7 @@ export function SignupFormDemo() {
     setResponse(null);
     try {
       const res = await fetch(
-        "https://natasha1.app.n8n.cloud/webhook-test/324ee735-2fbb-42c6-abc1-7605fba371a2",
+        "https://natasha1.app.n8n.cloud/webhook/324ee735-2fbb-42c6-abc1-7605fba371a2",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
