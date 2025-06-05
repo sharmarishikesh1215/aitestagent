@@ -57,7 +57,7 @@ export default function Footer() {
           <h6 className="footer-title">Resources</h6>
           <a
             className="link link-hover"
-            href="https://www.frugaltesting.com/case-studies"
+            href="https://www.frugaltesting.com/blogs#gsc.tab=0"
             targe="_blank"
           >
             Blogs
