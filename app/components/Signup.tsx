@@ -63,7 +63,7 @@ export function SignupFormDemo() {
     <div className="shadow-input mx-auto w-full max-w-4xl rounded-none bg-white p-8 md:rounded-2xl md:p-12 dark:bg-black">
       {/* ↑ changed max-w-2xl to max-w-4xl for a wider form */}
       <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
-        Feature Info
+        Test Info
       </h2>
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row gap-4">
