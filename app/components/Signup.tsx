@@ -189,7 +189,7 @@ export function SignupFormDemo() {
           <LabelInputContainer>
             <CustomLabel htmlFor="ac">
               <span className="flex items-center gap-1 relative w-fit">
-                Acceptance Criteria
+                Acceptance Criteria*
                 <button
                   type="button"
                   className="inline-flex items-center justify-center w-4 h-4 rounded-full transition-colors shadow text-white focus:outline-none focus:ring-2 focus:ring-f699fc"
