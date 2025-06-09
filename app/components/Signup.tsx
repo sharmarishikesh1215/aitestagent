@@ -77,7 +77,7 @@ export function SignupFormDemo() {
                 Google Sheet Link*
                 <br />
                 <span className="text-xs text-gray-500 dark:text-gray-400">
-                  (Output Sheet Should have Edit* Access for All)
+                  (Output Sheet Should have Editor* Access for All)
                 </span>
               </CustomLabel>
               <Input
@@ -97,7 +97,7 @@ export function SignupFormDemo() {
               <Input
                 id="ticketId"
                 name="ticketId"
-                placeholder="PC01"
+                placeholder="SG"
                 type="text"
                 value={form.ticketId}
                 onChange={handleChange}
@@ -126,7 +126,7 @@ export function SignupFormDemo() {
               <Input
                 id="module"
                 name="module"
-                placeholder="Order"
+                placeholder="Gifting"
                 type="text"
                 value={form.module}
                 onChange={handleChange}
@@ -181,7 +181,6 @@ export function SignupFormDemo() {
               type="text"
               value={form.summary}
               onChange={handleChange}
-              required
               className={inputClassName}
             />
           </LabelInputContainer>
