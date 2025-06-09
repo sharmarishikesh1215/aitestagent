@@ -10,21 +10,21 @@ export default function Footer() {
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/about-us"
-            targe="_blank"
+            target="_blank"
           >
             About Us
           </a>
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/contact-us"
-            targe="_blank"
+            target="_blank"
           >
             Contact Us
           </a>
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/careers"
-            targe="_blank"
+            target="_blank"
           >
             Careers
           </a>
@@ -34,21 +34,21 @@ export default function Footer() {
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/services/automation-testing"
-            targe="_blank"
+            target="_blank"
           >
             Automation Testing
           </a>
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/services/performance-testing"
-            targe="_blank"
+            target="_blank"
           >
             Performance Testing
           </a>
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/services/functional-testing"
-            targe="_blank"
+            target="_blank"
           >
             Functional Testing
           </a>
@@ -58,28 +58,28 @@ export default function Footer() {
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/blogs#gsc.tab=0"
-            targe="_blank"
+            target="_blank"
           >
             Blogs
           </a>
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/case-studies"
-            targe="_blank"
+            target="_blank"
           >
             Case Studies
           </a>
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/testimonial-page"
-            targe="_blank"
+            target="_blank"
           >
             Testimonials
           </a>
           <a
             className="link link-hover"
             href="https://www.frugaltesting.com/newsletter"
-            targe="_blank"
+            target="_blank"
           >
             Newsletter
           </a>
