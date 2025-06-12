@@ -163,7 +163,7 @@ export function SignupFormDemo() {
                 </button>
                 {showSummaryInfo && (
                   <div
-                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 z-20 w-64 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
+                    className="absolute left-3/2 -translate-x-1/2 bottom-full mb-2 z-20 w-50 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
                     style={{
                       boxShadow:
                         "0 4px 16px 0 rgba(60,60,60,0.10), 0 1.5px 4px 0 rgba(60,60,60,0.08)",
@@ -210,7 +210,7 @@ export function SignupFormDemo() {
                 </button>
                 {showAcInfo && (
                   <div
-                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 z-20 w-64 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
+                    className="absolute left-3/2 -translate-x-1/2 bottom-full mb-2 z-20 w-50 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
                     style={{
                       boxShadow:
                         "0 4px 16px 0 rgba(60,60,60,0.10), 0 1.5px 4px 0 rgba(60,60,60,0.08)",
@@ -260,7 +260,7 @@ export function SignupFormDemo() {
                 </button>
                 {showDescInfo && (
                   <div
-                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 z-20 w-64 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
+                    className="absolute left-3/2 -translate-x-1/2 bottom-full mb-2 z-20 w-50 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
                     style={{
                       boxShadow:
                         "0 4px 16px 0 rgba(60,60,60,0.10), 0 1.5px 4px 0 rgba(60,60,60,0.08)",
