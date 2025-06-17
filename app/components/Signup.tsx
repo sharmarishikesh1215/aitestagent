@@ -108,16 +108,50 @@ export function SignupFormDemo() {
           </div>
           {/* Right column */}
           <div className="flex-1 flex flex-col gap-4 mt-4">
+            {/* Summary */}
             <LabelInputContainer>
-              <CustomLabel htmlFor="sheet">Sheet Tab Link*</CustomLabel>
+              <CustomLabel htmlFor="summary">
+                <span className="flex items-center gap-1 relative w-fit">
+                  Summary
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center w-4 h-4 rounded-full transition-colors shadow text-white focus:outline-none focus:ring-2 focus:ring-f699fc"
+                    tabIndex={0}
+                    style={{
+                      minWidth: "16px",
+                      minHeight: "16px",
+                      background:
+                        "linear-gradient(135deg, #bfc3ce 0%, #a4a9b3 100%)",
+                    }}
+                    onMouseEnter={() => setShowSummaryInfo(true)}
+                    onMouseLeave={() => setShowSummaryInfo(false)}
+                    onFocus={() => setShowSummaryInfo(true)}
+                    onBlur={() => setShowSummaryInfo(false)}
+                  >
+                    <span className="font text-[10px]" aria-hidden="true">
+                      <i>i</i>
+                    </span>
+                  </button>
+                  {showSummaryInfo && (
+                    <div
+                      className="absolute left-3/2 -translate-x-1/2 bottom-full mb-2 z-20 w-50 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
+                      style={{
+                        boxShadow:
+                          "0 4px 16px 0 rgba(60,60,60,0.10), 0 1.5px 4px 0 rgba(60,60,60,0.08)",
+                      }}
+                    >
+                      Write a concise summary of the test or ticket.
+                    </div>
+                  )}
+                </span>
+              </CustomLabel>
               <Input
-                id="sheet"
-                name="sheet"
-                placeholder="Link to Sheet Tab"
+                id="summary"
+                name="summary"
+                placeholder="Summary"
                 type="text"
-                value={form.sheet}
+                value={form.summary}
                 onChange={handleChange}
-                required
                 className={inputClassName}
               />
             </LabelInputContainer>
@@ -137,53 +171,6 @@ export function SignupFormDemo() {
           </div>
         </div>
         <div className="mt-6 flex flex-col space-y-3">
-          {/* Summary */}
-          <LabelInputContainer>
-            <CustomLabel htmlFor="summary">
-              <span className="flex items-center gap-1 relative w-fit">
-                Summary
-                <button
-                  type="button"
-                  className="inline-flex items-center justify-center w-4 h-4 rounded-full transition-colors shadow text-white focus:outline-none focus:ring-2 focus:ring-f699fc"
-                  tabIndex={0}
-                  style={{
-                    minWidth: "16px",
-                    minHeight: "16px",
-                    background:
-                      "linear-gradient(135deg, #bfc3ce 0%, #a4a9b3 100%)",
-                  }}
-                  onMouseEnter={() => setShowSummaryInfo(true)}
-                  onMouseLeave={() => setShowSummaryInfo(false)}
-                  onFocus={() => setShowSummaryInfo(true)}
-                  onBlur={() => setShowSummaryInfo(false)}
-                >
-                  <span className="font text-[10px]" aria-hidden="true">
-                    <i>i</i>
-                  </span>
-                </button>
-                {showSummaryInfo && (
-                  <div
-                    className="absolute left-3/2 -translate-x-1/2 bottom-full mb-2 z-20 w-50 rounded-lg bg-white px-4 py-3 text-xs text-gray-800 shadow-lg border border-gray-100"
-                    style={{
-                      boxShadow:
-                        "0 4px 16px 0 rgba(60,60,60,0.10), 0 1.5px 4px 0 rgba(60,60,60,0.08)",
-                    }}
-                  >
-                    Write a concise summary of the test or ticket.
-                  </div>
-                )}
-              </span>
-            </CustomLabel>
-            <Input
-              id="summary"
-              name="summary"
-              placeholder="Summary"
-              type="text"
-              value={form.summary}
-              onChange={handleChange}
-              className={inputClassName}
-            />
-          </LabelInputContainer>
           {/* Acceptance Criteria */}
           <LabelInputContainer>
             <CustomLabel htmlFor="ac">
@@ -266,7 +253,8 @@ export function SignupFormDemo() {
                         "0 4px 16px 0 rgba(60,60,60,0.10), 0 1.5px 4px 0 rgba(60,60,60,0.08)",
                     }}
                   >
-                    Mention any additional specifications that you want the AI model to take care of.
+                    Mention any additional specifications that you want the AI
+                    model to take care of.
                   </div>
                 )}
               </span>
