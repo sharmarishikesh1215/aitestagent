@@ -14,6 +14,7 @@ export function SignupFormDemo() {
     summary: "",
     ac: "",
     desc: "",
+    dropdown: ""
   });
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string | null>(null);
@@ -64,6 +65,21 @@ export function SignupFormDemo() {
 
   return (
     <div className="shadow-input mx-auto w-full max-w-4xl rounded-none bg-white p-8 md:rounded-2xl md:p-12 dark:bg-black">
+      {/* Modern mini dropdown menu for Environment */}
+      <div className="mb-6 flex items-center gap-2">  
+        <span className="text-xs font-medium text-[#5b666d]">Type:</span>
+        <MiniDropdown
+          options={["Test Case", "Test Scenario"]}
+          value={form.sheet}
+          onChange={(val) => {
+        setForm((f) => ({
+          ...f,
+          sheet: val,
+          dropdown: val === "Test Case" ? "tc" : val === "Test Scenario" ? "ts" : ""
+        }));
+          }}
+        />
+      </div>
       {/* ↑ changed max-w-2xl to max-w-4xl for a wider form */}
       <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
         Test Info
@@ -291,7 +307,8 @@ export function SignupFormDemo() {
                 parsed !== null &&
                 parsed.message === "Error in workflow"
               ) {
-                message = "Please check google sheet link and give editor access to all.";
+                message =
+                  "Please check google sheet link and give editor access to all.";
                 isError = true;
               } else if (
                 response &&
@@ -387,3 +404,63 @@ const CustomLabel = (props: React.ComponentProps<typeof Label>) => (
     )}
   />
 );
+
+// MiniDropdown: a modern, sleek dropdown menu without using <select>
+function MiniDropdown({
+  options,
+  value,
+  onChange,
+}: {
+  options: string[];
+  value: string;
+  onChange: (val: string) => void;
+}) {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        className="min-w-[120px] px-3 py-1.5 rounded-md border border-gray-300 bg-white text-xs text-[#5b666d] shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f5f5f5] flex items-center justify-between gap-2 transition"
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span className="text-xs text-[#5b666d]">{value || "Select"}</span>
+        <svg
+          className={`w-4 h-4 ml-2 transition-transform ${open ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          <path d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <ul
+          className="absolute z-10 mt-1 w-full rounded-md bg-white shadow-lg border border-gray-200 py-1 text-xs text-[#5b666d]"
+          tabIndex={-1}
+          role="listbox"
+        >
+          {options.map((opt) => (
+            <li
+              key={opt}
+              className={`px-3 py-2 cursor-pointer hover:bg-cyan-50 ${
+                value === opt ? "bg-cyan-100 font-semibold" : ""
+              } text-xs text-[#5b666d]`}
+              onClick={() => {
+                onChange(opt);
+                setOpen(false);
+              }}
+              role="option"
+              aria-selected={value === opt}
+            >
+              {opt}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
